@@ -8,19 +8,19 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;background:#000;overflow:hidden;font-family:-apple-system,sans-serif}
 video{width:100%;height:100vh;object-fit:cover;display:block}
-#tap-screen{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
-#tap-screen .logo{font-size:36px;font-weight:900;color:#00d4ff;letter-spacing:2px;margin-bottom:8px}
-#tap-screen .sub{font-size:13px;color:#555;margin-bottom:60px}
-#tap-screen .btn{background:#00d4ff;color:#000;font-size:18px;font-weight:800;padding:18px 44px;border-radius:14px;border:none;cursor:pointer;letter-spacing:1px}
-#intro-vid{position:fixed;inset:0;z-index:20;background:#000;display:none}
-#work-vid{position:fixed;inset:0;z-index:10;display:none}
-.top{position:absolute;top:0;left:0;right:0;padding:14px 16px;background:linear-gradient(to bottom,#000c,transparent);z-index:30}
+#tap{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
+#tap .logo{font-size:38px;font-weight:900;color:#00d4ff;letter-spacing:3px}
+#tap .sub{font-size:13px;color:#555;margin-bottom:60px}
+#tap .btn{background:#00d4ff;color:#000;font-size:18px;font-weight:800;padding:18px 48px;border-radius:14px;border:none;cursor:pointer}
+#v1-wrap{position:fixed;inset:0;z-index:20;background:#000}
+#v2-wrap{position:fixed;inset:0;z-index:10}
+.top{position:absolute;top:0;left:0;right:0;padding:14px 16px;background:linear-gradient(to bottom,#000c,transparent);z-index:30;pointer-events:none}
 .badge{font-size:18px;font-weight:900;color:#00d4ff}
 .badge span{color:#fff;font-weight:400;font-size:12px;margin-left:4px}
 #prog{height:3px;background:#00d4ff;width:0%;position:fixed;bottom:0;left:0;z-index:30;transition:width .3s linear}
-#cta{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to top,#000f 40%,transparent);padding:48px 24px 32px;display:none;text-align:center;z-index:30}
-.cta-title{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px}
-.cta-sub{font-size:14px;color:#7d8590;margin-bottom:24px}
+#cta{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to top,#000f 50%,transparent);padding:48px 24px 32px;display:none;text-align:center;z-index:30}
+.ct{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px}
+.cs{font-size:14px;color:#7d8590;margin-bottom:24px}
 .wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#000;font-weight:800;font-size:16px;padding:16px 28px;border-radius:12px;text-decoration:none;margin-bottom:12px}
 .wa svg{width:22px;height:22px;fill:#000}
 .fb{display:block;font-size:13px;color:#7d8590;text-decoration:none;padding:8px}
@@ -28,28 +28,25 @@ video{width:100%;height:100vh;object-fit:cover;display:block}
 </head>
 <body>
 
-<!-- Pantalla inicial — requiere toque para activar video en móvil -->
-<div id="tap-screen" onclick="iniciar()">
+<div id="tap" onclick="iniciar()">
   <div class="logo">ATF</div>
   <div class="sub">by Simplex</div>
-  <button class="btn">▶ VER</button>
+  <button class="btn">▶ &nbsp;VER</button>
 </div>
 
-<!-- 1. Video intro gorila/logo -->
-<div id="intro-vid">
+<div id="v1-wrap">
   <video id="v1" playsinline webkit-playsinline muted preload="auto"
     src="videos/atf_intro.mp4"></video>
 </div>
 
-<!-- 2. Video del trabajo -->
-<div id="work-vid">
+<div id="v2-wrap">
   <div class="top"><div class="badge">ATF <span>by Simplex</span></div></div>
-  <video id="v2" playsinline webkit-playsinline preload="auto"
+  <video id="v2" playsinline webkit-playsinline muted preload="auto"
     src="videos/atf_2024_retrofit_completo.mp4"></video>
   <div id="prog"></div>
   <div id="cta">
-    <div class="cta-title">Lo quieres en tu auto?</div>
-    <div class="cta-sub">Agenda tu cita — respuesta inmediata</div>
+    <div class="ct">Lo quieres en tu auto?</div>
+    <div class="cs">Agenda tu cita — respuesta inmediata</div>
     <a class="wa" href="https://wa.me/523326148674?text=Vi+tu+trabajo+en+el+evento%2C+quiero+informes">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.1 1.51 5.83L0 24l6.335-1.48A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-4.988-1.362l-.358-.212-3.763.879.938-3.65-.233-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
       Agendar cita — WhatsApp
@@ -60,33 +57,32 @@ video{width:100%;height:100vh;object-fit:cover;display:block}
 
 <script>
 const v1=document.getElementById('v1'), v2=document.getElementById('v2');
-const prog=document.getElementById('prog');
+const tap=document.getElementById('tap'), w1=document.getElementById('v1-wrap');
 
 function iniciar(){
-  document.getElementById('tap-screen').style.display='none';
-  document.getElementById('intro-vid').style.display='block';
-  v1.play().catch(()=>{ v1.onended(); });
+  tap.style.display='none';
+  // Arrancar AMBOS en el mismo gesto de usuario — garantiza play en iOS/Android
+  v1.play().catch(()=>{});
+  v2.play().then(()=>{ v2.pause(); }).catch(()=>{}); // buffer v2, pausa hasta que toque
+  v2.muted=true; // v2 también muted para buffering silencioso
 }
 
-v1.onended=()=>{
-  document.getElementById('intro-vid').style.display='none';
-  document.getElementById('work-vid').style.display='block';
-  v2.play().catch(()=>{});
-};
+// Cuando intro termina → ocultar intro, reanudar v2 y quitarle mute
+v1.onended = mostrarTrabajo;
+setTimeout(()=>{ if(w1.style.display!=='none') mostrarTrabajo(); }, 8000);
 
-// Max 8s en intro
-setTimeout(()=>{
-  if(document.getElementById('intro-vid').style.display==='block'){
-    v1.onended();
-  }
-}, 8000);
+function mostrarTrabajo(){
+  w1.style.display='none';
+  v2.muted=false;
+  v2.play().catch(()=>{ v2.muted=true; v2.play().catch(()=>{}); });
+}
 
 v2.ontimeupdate=()=>{
-  if(!v2.duration)return;
-  prog.style.width=(v2.currentTime/v2.duration*100)+'%';
-  if(v2.duration-v2.currentTime<6) document.getElementById('cta').style.display='block';
+  if(!v2.duration) return;
+  document.getElementById('prog').style.width=(v2.currentTime/v2.duration*100)+'%';
+  if(v2.duration - v2.currentTime < 6) document.getElementById('cta').style.display='block';
 };
-v2.onended=()=>{document.getElementById('cta').style.display='block';};
+v2.onended=()=>{ document.getElementById('cta').style.display='block'; };
 </script>
 </body>
 </html>
